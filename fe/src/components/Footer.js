@@ -9,10 +9,11 @@ import {
 } from "@mui/icons-material";
 import React from "react";
 import { styled } from "styled-components";
-
+import { moblie } from "../responsive";
 const Container = styled.div`
   display: flex;
   height: 40vh;
+  ${moblie({flexDirection:'column'})};
 `;
 const Left = styled.div`
   flex: 1;
@@ -44,6 +45,7 @@ const SocialIcon = styled.div`
 const Center = styled.div`
   flex: 1;
   padding: 20px;
+  ${moblie({display:'none'})};
 `;
 const Title = styled.h3`
   padding: 20px;
@@ -62,6 +64,7 @@ const ListItem = styled.li`
 `;
 const Right = styled.div`
   flex: 1;
+  ${moblie({backgroundColor:'#fff8f8'})};
 `;
 const ContactItem = styled.div`
   margin-bottom: 20px;

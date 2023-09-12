@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { moblie } from "../responsive";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -26,11 +27,13 @@ const Title = styled.h1`
   font-size: 30px;
   font-weight: 500;
   margin-bottom: 20px;
+  ${moblie({fontSize:'20px'})};
 `;
 const Input = styled.input`
   min-width: 40%;
   margin: 20px 10px 0px 0px;
   padding: 10px;
+  ${moblie({width:'100px'})};
 `;
 const Button = styled.button`
   width: 10%;
@@ -41,6 +44,7 @@ const Button = styled.button`
   margin-top: 30px;
   border-radius: 5px;
   cursor: pointer;
+  ${moblie({width:'90px'})};
 `;
 const Register = styled.p`
   font-size: 15px;
@@ -53,6 +57,7 @@ margin-top: 20px;
 
 font-size: 15px;
 cursor: pointer;
+${moblie({fontSize:'10px'})};
 `;
 const LinkSpan=styled.a`
 text-decoration: underline;

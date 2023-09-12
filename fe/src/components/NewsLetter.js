@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 import { Send } from "@mui/icons-material";
+import { moblie } from "../responsive";
 const Container = styled.div`
 height: 40vh;
 background-color: #fcf5f5;
@@ -14,11 +15,13 @@ flex-direction: column;
 const Title = styled.h1`
 font-size: 70px;
 margin-bottom: 20px;
+${moblie({fontSize:'60px'})};
 `;
 const Desc = styled.div`
 font-size: 24px;
 font-weight: 300;
 margin-bottom: 30px;
+${moblie({textAlign:'center',fontSize:'12px'})};
 `;
 const InputContainer = styled.div`
 
@@ -29,6 +32,7 @@ display: flex;
 
 justify-content: space-between;
 border: 1px solid lightgray;
+${moblie({with:'80%'})};
 `
 const Input = styled.input`
 border:none;

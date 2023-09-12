@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { moblie } from "../responsive";
 const Container = styled.div`
   flex: 1;
   margin: 3px;
@@ -10,6 +10,7 @@ const Img = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  ${moblie({height:'30vh'})};
 `;
 const Info = styled.div`
 position: absolute;

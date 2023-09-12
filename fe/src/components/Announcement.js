@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-
+import { moblie } from "../responsive"
 
 
 const Container = styled.div`
@@ -11,6 +11,7 @@ align-items: center;
 justify-content: center;
 font-size: 14px;
 font-weight: bold;
+${moblie({fontSize:'12px'})};
 `
 
 const Announcement = () => {

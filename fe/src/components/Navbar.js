@@ -3,8 +3,10 @@ import styled from "styled-components";
 import { ShoppingCart } from "@mui/icons-material";
 import { AiOutlineSearch } from "react-icons/ai";
 import Badge from "@mui/material/Badge";
+import { moblie } from "../responsive";
 const Container = styled.div`
   height: 60px;
+  ${moblie({height:'50px'})}
 `;
 
 const Wrapper = styled.div`
@@ -12,6 +14,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  ${moblie({padding:'10px 0px'})};
 `;
 
 const Left = styled.div`
@@ -23,6 +26,7 @@ const Left = styled.div`
 const Langague = styled.span`
   font-size: 14px;
   cursor: pointer;
+  ${moblie({display:'none'})};
 `;
 
 const SearchContainer = styled.div`
@@ -34,6 +38,7 @@ const SearchContainer = styled.div`
 `;
 const Input = styled.input`
   border: none;
+  ${moblie({width:'50px'})};
 `;
 const Center = styled.div`
   flex: 1;
@@ -41,17 +46,20 @@ const Center = styled.div`
 `;
 const Logo = styled.h1`
   font-weight: bold;
+  ${moblie({fontSize:'15px'})};
 `;
 const Right = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  ${moblie({flex:2,justifyContent:'center'})};
 `;
 const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
+  ${moblie({fontSize:'10px',marginLeft:'10px'})};
 `;
 
 const Navbar = () => {
