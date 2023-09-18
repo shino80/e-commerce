@@ -8,8 +8,8 @@ import Pay from "./pages/Pay";
 function App() {
   return (
     <div className="App">
-{/* <Home/> */}
-<Pay/>
+<Home/>
+
     </div>
   );
 }
