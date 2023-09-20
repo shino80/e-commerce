@@ -5,12 +5,15 @@ import DateRangeIcon from "@mui/icons-material/DateRange";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import HomeIcon from "@mui/icons-material/Home";
 import UpgradeIcon from "@mui/icons-material/Upgrade";
+import { Link } from "react-router-dom";
 const UserPage = () => {
   return (
     <div className="user">
       <div className="userTitleContainer">
         <h1 className="userTitle">Edit User</h1>
-        <button className="userAddButton">Create</button>
+        <Link to='/new-user'>
+          <button className="userAddButton">Create</button>
+        </Link>
       </div>
       <div className="userContainer">
         <div className="userShow">
@@ -110,12 +113,11 @@ const UserPage = () => {
                   src="https://plus.unsplash.com/premium_photo-1684517010070-1a0ed98714cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
                 />
                 <label htmlFor="file">
-                  <UpgradeIcon  className="userUpdateIcon"/>
+                  <UpgradeIcon className="userUpdateIcon" />
                 </label>
-                <input type="file" id="file" style={{display:"none"}} />
+                <input type="file" id="file" style={{ display: "none" }} />
               </div>
               <button className="buttonUpdate">Update</button>
-
             </div>
           </form>
         </div>

@@ -88,12 +88,12 @@
   flex-direction: column;
   margin-top: 10px;
 }
-.userUpdateItem,label{
+.userUpdateItem.label{
   margin-bottom: 5px;
   font-size: 15px;
 
 }
-.userUpdateItem,input{
+.userUpdateItem.input{
 border: none;
 width: 250px;
 

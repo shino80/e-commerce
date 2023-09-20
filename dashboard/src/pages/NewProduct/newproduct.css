@@ -1,0 +1,58 @@
+.newproduct{
+    flex:4;
+    margin-left: 10px;
+}
+.newproductForm{
+    display:flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.firstLabel{
+    font-size: 30px;
+}
+.newproductFormLeft{
+    display: flex;
+    flex-direction: column;
+
+}
+.newproductFormLeft.label{
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: gray;
+}
+.newproductFormLeft > input{
+
+    margin-bottom: 20px;
+    border: none;
+    padding: 5px;
+    border-bottom: 1px solid gray;
+}
+.newproductFormLeft >select{
+    height:30px;
+    margin-bottom: 10px;
+
+}  
+
+.newproductFormRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+.newproductUpload{
+    display: flex;
+    align-items: center;
+}
+.newproductButton{
+  
+    width: 200px;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: darkblue;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+ margin-top: 20px;
+
+}
