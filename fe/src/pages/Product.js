@@ -18,11 +18,11 @@ const Wrapper = styled.div`
   ${moblie({ padding: "10px", flexDirection: "column" })};
 `;
 const ImgContainer = styled.div`
-  flex: 1;
+  flex: 2;
 `;
 const Image = styled.img`
   width: 100%;
-  height: 110vh;
+  height: 100vh;
   object-fit: cover;
   ${moblie({ height: "40vh" })};
 `;
