@@ -1,78 +1,80 @@
-export  const sliderItems = [
+export const sliderItems = [
   {
     id: 1,
+    img: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c2hpcnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    title: "SUMMER SALE",
+    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
     bg: "f5fafd",
-    img: "https://images.unsplash.com/photo-1622290319146-7b63df48a635?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjN8fHNoaXJ0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    title: "SUPER SALE !",
-    desc: "GET FLAT 30% OF FOR NEW ARRIVALS",
   },
-
   {
     id: 2,
-    bg: "coral",
-    img: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2487&q=80",
-    title: "SUPER SALE !",
-    desc: "GET FLAT 30% OF FOR NEW ARRIVALS",
+    img: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c2hpcnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    title: "AUTUMN COLLECTION",
+    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    bg: "fcf1ed",
   },
   {
     id: 3,
-    bg: "f5fafd",
-    img: "https://images.unsplash.com/photo-1622290319146-7b63df48a635?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjN8fHNoaXJ0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    title: "SUPER SALE !",
-    desc: "GET FLAT 30% OF FOR NEW ARRIVALS",
+    img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c2hpcnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    title: "LOUNGEWEAR LOVE",
+    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    bg: "fbf0f4",
   },
 ];
-
 export const categories = [
   {
     id: 1,
-    img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c2hpcnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    title: "shirt",
+    img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    title: "SHIRT STYLE!",
+    cat:"adidas"
   },
   {
     id: 2,
-    img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c2hpcnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    title: "t-shirt",
+    img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    title: "LOUNGEWEAR LOVE",
+    cat:"coat"
   },
   {
     id: 3,
-    img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c2hpcnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    title: "no-shirt",
+    img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    title: "LIGHT JACKETS",
+    cat:"women"
   },
 ];
 
-export const popularProducts = [{
-  id:1,
-  img:'https://i.pinimg.com/564x/16/72/b1/1672b1c12cea4b7dc9ab193762093e73.jpg'
-
-},{
-  id:2,
-  img:'https://i.pinimg.com/564x/16/72/b1/1672b1c12cea4b7dc9ab193762093e73.jpg'
-
-},{
-  id:3,
-  img:'https://i.pinimg.com/564x/16/72/b1/1672b1c12cea4b7dc9ab193762093e73.jpg'
-
-},{
-  id:4,
-  img:'https://i.pinimg.com/564x/16/72/b1/1672b1c12cea4b7dc9ab193762093e73.jpg'
-
-},{
-  id:5,
-  img:'https://i.pinimg.com/564x/16/72/b1/1672b1c12cea4b7dc9ab193762093e73.jpg'
-
-},{
-  id:6,
-  img:'https://i.pinimg.com/564x/16/72/b1/1672b1c12cea4b7dc9ab193762093e73.jpg'
-
-},{
-  id:7,
-  img:'https://i.pinimg.com/564x/16/72/b1/1672b1c12cea4b7dc9ab193762093e73.jpg'
-
-},{
-  id:8,
-  img:'https://i.pinimg.com/564x/16/72/b1/1672b1c12cea4b7dc9ab193762093e73.jpg'
-
-}]
+export const popularProducts = [
+  {
+    id:1,
+    img:"https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
+  },
+  {
+    id:2,
+    img:"https://cdn.shopify.com/s/files/1/0101/4832/products/Angela_Natural_Tee.png?v=1606780388",
+  },
+  {
+    id:3,
+    img:"https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
+  },
+  {
+    id:4,
+    img:"https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
+  },
+  {
+    id:5,
+    img:"https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
+  },
+  {
+    id:6,
+    img:"https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
+  },
+  {
+    id:7,
+    img:"https://www.vintageindustries.nl/download_front/qympzk1762/2217_Arrow_Jacket_Forest.png",
+  },
+  {
+    id:8,
+    img:"https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png",
+  },
+]
 
 

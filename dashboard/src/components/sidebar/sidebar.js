@@ -56,7 +56,7 @@ const Sidebar = () => {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Mange Products</h3>
           <ul className="sidebarList">
-            <Link className="link" to="/products">
+            <Link className="link" to='/products'>
               <li className="sidebarListItem">
                 <InventoryIcon className="sidebarIcon" />
                 Products

@@ -4,10 +4,17 @@ import { styled } from "styled-components";
 import Footer from "../components/Footer";
 import { Add, Remove } from "@mui/icons-material";
 import { moblie } from "../responsive";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import StripeCheckout from "react-stripe-checkout";
+import { useState, useEffect } from "react";
+import { userReq } from "../requestMethod";
+import { useNavigate } from "react-router-dom";
+const KEY = process.env.REACT_APP_;
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 20px;
-  ${moblie({padding: '10px'})};
+  ${moblie({ padding: "10px" })};
 `;
 const Title = styled.h1`
   font-weight: 600;
@@ -30,8 +37,7 @@ const TopButton = styled.button`
   color: ${(props) => props.type === "filled" && "white"};
 `;
 const TopTexts = styled.div`
-  ${moblie({display:'none'})};
-
+  ${moblie({ display: "none" })};
 `;
 const TopText = styled.span`
   text-decoration: underline;
@@ -43,17 +49,16 @@ const TopText = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
-  ${moblie({flexDirection:'column'})};
+  ${moblie({ flexDirection: "column" })};
 `;
 const Info = styled.div`
   flex: 3;
-
 `;
 
 const Product = styled.div`
   display: flex;
   justify-content: space-between;
-  ${moblie({flexDirection:'column'})};
+  ${moblie({ flexDirection: "column" })};
 `;
 const ProductDetail = styled.div`
   flex: 2;
@@ -94,12 +99,12 @@ const ProductAmountContainer = styled.div`
 const ProductAmount = styled.div`
   font-size: 24px;
   margin: 5px;
-  ${moblie({margin:'5px 15px'})};
+  ${moblie({ margin: "5px 15px" })};
 `;
 const Price = styled.div`
   font-size: 30px;
   font-weight: 200;
-  ${moblie({marginBottom:'20px'})};
+  ${moblie({ marginBottom: "20px" })};
 `;
 
 const Hr = styled.hr`
@@ -127,15 +132,36 @@ const SummaryItem = styled.div`
 const SummaryItemText = styled.span``;
 const SummaryItemPrice = styled.span``;
 const Button = styled.button`
-width: 100%;
-padding: 10px;
-background-color: black;
-color: white;
-font-weight: 600;
-cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
 `;
 
 const Cart = () => {
+  const cart = useSelector((state) => state.cart);
+  const [stripeToken, setStripeToken] = useState(null);
+  const navigate = useNavigate();
+  const onToken = (token) => {
+    setStripeToken(token);
+  };
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const res = await userReq.post("/checkout/payment", {
+          tokenId: stripeToken.id,
+          amount:500,
+        });
+        navigate("/success", { state: { responseData: res.data } });
+        console.log(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    stripeToken  && makeRequest();
+  }, [stripeToken, cart.total, navigate]);
   return (
     <Container>
       <Announcement />
@@ -153,77 +179,67 @@ const Cart = () => {
         </Top>
         <Bottom>
           <Info>
-            <Product>
-              <ProductDetail>
-                <Image src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDZ8fHNoaXJ0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60" />
-                <Details>
-                  <ProductName>
-                    <b> Name:</b> Shirt
-                  </ProductName>
-                  <ProductId>
-                    <b> ID:</b> 123341244
-                  </ProductId>
-                  <ProductColor color="black" />
-                  <ProductSize>
-                    <b>Size:</b> S
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add style={{ cursor: "pointer" }} />
-                  <ProductAmount>2</ProductAmount>
-                  <Remove style={{ cursor: "pointer" }} />
-                </ProductAmountContainer>
-                <Price>20$</Price>
-              </PriceDetail>
-            </Product>
+            {cart.products.map((product) => (
+              <Product>
+                <ProductDetail>
+                  <Image src={product.img} />
+                  <Details>
+                    <ProductName>
+                      <b> Name:</b> {product.title}
+                    </ProductName>
+                    <ProductId>
+                      <b> ID:</b> {product._id}
+                    </ProductId>
+                    <ProductColor color={product.color} />
+                    <ProductSize>
+                      <b>Size:</b> {product.size}
+                    </ProductSize>
+                  </Details>
+                </ProductDetail>
+                <PriceDetail>
+                  <ProductAmountContainer>
+                    <Add style={{ cursor: "pointer" }} />
+                    <ProductAmount>{product.quantity}</ProductAmount>
+                    <Remove style={{ cursor: "pointer" }} />
+                  </ProductAmountContainer>
+                  <Price>¥{product.price * product.quantity}</Price>
+                </PriceDetail>
+              </Product>
+            ))}
             <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60" />
-                <Details>
-                  <ProductName>
-                    <b> Name:</b> Shirt
-                  </ProductName>
-                  <ProductId>
-                    <b> ID:</b> 123341244
-                  </ProductId>
-                  <ProductColor color="gray" />
-                  <ProductSize>
-                    <b>Size:</b> 41
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add style={{ cursor: "pointer" }} />
-                  <ProductAmount>2</ProductAmount>
-                  <Remove style={{ cursor: "pointer" }} />
-                </ProductAmountContainer>
-                <Price>20$</Price>
-              </PriceDetail>
-            </Product>
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$80</SummaryItemPrice>
+              <SummaryItemPrice>¥{cart.total}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$1</SummaryItemPrice>
+              <SummaryItemPrice>¥540</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$-1</SummaryItemPrice>
+              <SummaryItemPrice>¥-1000</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$80</SummaryItemPrice>
+              <SummaryItemPrice>¥{cart.total}</SummaryItemPrice>
             </SummaryItem>
-            <Button>Check Out</Button>
+            <Link>
+              <StripeCheckout
+                name="GorakuShop"
+                image="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGphcGFufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60"
+                billingAddress
+                shippingAddress
+                description={`Your total is ¥${cart.total}`}
+                amount={cart.total * 100}
+                token={onToken}
+                stripeKey={KEY}
+              >
+                <Button className="">Check Out Now</Button>
+              </StripeCheckout>
+            </Link>
           </Summary>
         </Bottom>
       </Wrapper>

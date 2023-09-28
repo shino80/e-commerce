@@ -38,15 +38,15 @@
   border-radius: 10px;
   cursor: pointer;
 }
-.widgetlgButton.Approved {
+.widgetlgButton.approved {
   background-color: lightcyan;
   color: rgb(17, 130, 130);
 }
-.widgetlgButton.Declined {
+.widgetlgButton.declined {
   background-color:#fff0f1 ;
   color: rgb(17, 130, 130);
 }
-.widgetlgButton.Pending {
+.widgetlgButton.pending {
   background-color: #ebf1fe;
   color: rgb(17, 130, 130);
 }
