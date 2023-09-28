@@ -143,6 +143,7 @@ const Button = styled.button`
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
+  const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
   const onToken = (token) => {
     setStripeToken(token);
@@ -152,15 +153,14 @@ const Cart = () => {
       try {
         const res = await userReq.post("/checkout/payment", {
           tokenId: stripeToken.id,
-          amount:500,
+          amount: 500,
         });
         navigate("/success", { state: { responseData: res.data } });
-        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
     };
-    stripeToken  && makeRequest();
+    stripeToken && makeRequest();
   }, [stripeToken, cart.total, navigate]);
   return (
     <Container>
@@ -169,13 +169,27 @@ const Cart = () => {
       <Wrapper>
         <Title>Your Bag</Title>
         <Top>
-          <TopButton>Continue Shopping</TopButton>
-
-          <TopTexts>
+          <Link to='/'>
+            <TopButton>Continue Shopping</TopButton>
+          </Link>
+          {/* <TopTexts>
             <TopText>Shopping Bag(2)</TopText>
             <TopText>Your WishList(0)</TopText>
-          </TopTexts>
-          <TopButton type="filled"> Check Out Now</TopButton>
+          </TopTexts>  */}
+          <Link>
+            <StripeCheckout
+              name="GorakuShop"
+              image="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGphcGFufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60"
+              billingAddress
+              shippingAddress
+              description={`Your total is ¥${cart.total}`}
+              amount={cart.total * 100}
+              token={onToken}
+              stripeKey={KEY}
+            >
+              <TopButton type="filled"> Check Out Now</TopButton>
+            </StripeCheckout>
+          </Link>
         </Top>
         <Bottom>
           <Info>
@@ -218,13 +232,13 @@ const Cart = () => {
               <SummaryItemText>Estimated Shipping</SummaryItemText>
               <SummaryItemPrice>¥540</SummaryItemPrice>
             </SummaryItem>
-            <SummaryItem>
+            {/* <SummaryItem>
               <SummaryItemText>Shipping Discount</SummaryItemText>
               <SummaryItemPrice>¥-1000</SummaryItemPrice>
-            </SummaryItem>
+            </SummaryItem> */}
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>¥{cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>¥{cart.total + 540}</SummaryItemPrice>
             </SummaryItem>
             <Link>
               <StripeCheckout

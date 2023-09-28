@@ -6,6 +6,8 @@ import Badge from "@mui/material/Badge";
 import { moblie } from "../responsive";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from "../redux/userRedux";
+import { useDispatch } from "react-redux";
 const Container = styled.div`
   height: 60px;
   ${moblie({ height: "50px" })}
@@ -66,7 +68,11 @@ const MenuItem = styled.div`
 
 const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
-
+  const user = useSelector((state) => state.user.currentUser);
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return (
     <div>
       <Container>
@@ -85,12 +91,24 @@ const Navbar = () => {
             </Link>
           </Center>
           <Right>
-            <Link className="link" to="/register">
-              <MenuItem>REGISTER</MenuItem>
-            </Link>
-            <Link className="link" to="/login">
-              <MenuItem>SIGN IN</MenuItem>
-            </Link>
+            {user ? (
+              <>
+                {" "}
+                <MenuItem>Welcome {user.username.toUpperCase()}</MenuItem>
+                <MenuItem onClick={handleLogout}>LOG OUT</MenuItem>
+              </>
+            ) : (
+              // Render the "REGISTER" and "SIGN IN" menu items if the user is not logged in
+              <>
+                <Link className="link" to="/register">
+                  <MenuItem>REGISTER</MenuItem>
+                </Link>
+                <Link className="link" to="/login">
+                  <MenuItem>SIGN IN</MenuItem>
+                </Link>
+              </>
+            )}
+
             <Link to="/cart">
               <MenuItem>
                 <Badge badgeContent={quantity} color="primary">

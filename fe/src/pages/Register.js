@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import { moblie } from "../responsive";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../redux/apiCall";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -26,13 +30,13 @@ const Title = styled.h1`
   font-size: 30px;
   font-weight: 500;
   margin-bottom: 20px;
-  ${moblie({fontSize:'20px'})};
+  ${moblie({ fontSize: "20px" })};
 `;
 const Input = styled.input`
   min-width: 40%;
   margin: 20px 10px 0px 0px;
   padding: 10px;
-  ${moblie({width:'100px'})};
+  ${moblie({ width: "100px" })};
 `;
 const Button = styled.button`
   width: 10%;
@@ -43,7 +47,7 @@ const Button = styled.button`
   margin-top: 30px;
   border-radius: 5px;
   cursor: pointer;
-  ${moblie({width:'90px'})};
+  ${moblie({ width: "90px" })};
 `;
 const Login = styled.p`
   font-size: 15px;
@@ -53,23 +57,63 @@ const Login = styled.p`
 const LinkSpan = styled.a`
   border: none;
 `;
+const SpanErr = styled.span`
+  color: red;
+  margin: 10px 0;
+`;
 export const Register = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [err, setErr] = useState("");
+  const dispatch = useDispatch();
+  const nagative = useNavigate();
+  // const { isFetching, error } = useSelector((state) => state.user);
+  const handleRegister = (e) => {
+    e.preventDefault();
+    if (confirm != password) {
+      setErr("Confirm Password not correct ! ");
+    }
+    register(dispatch, { email, username, password });
+    nagative("/");
+  };
   return (
     <Container>
       <Title>CREATE AN ACCOUNT</Title>
       <Wrapper>
         <Form>
-          <Input placeholder="Your Name" />
-
-          <Input placeholder="User name" />
-          <Input placeholder="Email" />
-          <Input placeholder="Password" />
-          <Input placeholder="Confirm Password" />
+          <Input
+          required
+            placeholder="User name"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+             required
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+             required
+          type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Input
+             required
+          type="password"
+            placeholder="Confirm Password"
+            onChange={(e) => setConfirm(e.target.value)}
+          />
         </Form>
       </Wrapper>
-      <Button>CREATE</Button>
+      <Button onClick={handleRegister}>CREATE</Button>
+      {err && <SpanErr>{err}</SpanErr>}
       <Login>
-        Already have account ? <LinkSpan>Login here .</LinkSpan>
+        Already have account ?{" "}
+        <Link to="/login" className="link">
+          <LinkSpan>Login here .</LinkSpan>
+        </Link>
       </Login>
     </Container>
   );

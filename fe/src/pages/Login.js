@@ -3,7 +3,7 @@ import { moblie } from "../responsive";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/apiCall";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -80,38 +80,41 @@ export const Login = () => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  const nagative = useNavigate()
+  const nagative = useNavigate();
   const { isFetching, error } = useSelector((state) => state.user);
   const handleLogin = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
-    nagative('/')
+    nagative("/");
   };
   return (
     <Container>
       <Title>SIGN IN</Title>
       <Wrapper>
-        <Form>
+        <Form >
           <Input
+           required
             placeholder="Email"
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
+           required
             type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form>
       </Wrapper>
-      <Button onClick={handleLogin} disabled={isFetching}>
+      <Button  onClick={handleLogin} disabled={isFetching}>
         LOGIN
       </Button>
+
       {/* {error && <Error>SomeThing Went Wrong ! </Error>} */}
       <LinkP>Don't remember your password ?</LinkP>
       <LinkP>
         Create an account ?{" "}
-        <Link to="/register"  className="link">
-          <LinkSpan >Register here .</LinkSpan>
+        <Link to="/register" className="link">
+          <LinkSpan>Register here .</LinkSpan>
         </Link>
       </LinkP>
     </Container>
