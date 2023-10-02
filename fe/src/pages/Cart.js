@@ -2,7 +2,7 @@ import Navbar from "../components/Navbar";
 import Announcement from "../components/Announcement";
 import { styled } from "styled-components";
 import Footer from "../components/Footer";
-import { Add, Remove } from "@mui/icons-material";
+import { Add, Remove, Delete } from "@mui/icons-material";
 import { moblie } from "../responsive";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -10,6 +10,9 @@ import StripeCheckout from "react-stripe-checkout";
 import { useState, useEffect } from "react";
 import { userReq } from "../requestMethod";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deleteCart, updateAmoutCart } from "../redux/cartRedux";
+
 const KEY = process.env.REACT_APP_;
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -143,8 +146,9 @@ const Button = styled.button`
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
-  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const onToken = (token) => {
     setStripeToken(token);
   };
@@ -162,6 +166,13 @@ const Cart = () => {
     };
     stripeToken && makeRequest();
   }, [stripeToken, cart.total, navigate]);
+  const handeDelete = (id) => {
+    dispatch(deleteCart(id));
+  };
+
+  const handleClick = (id, type) => {
+    dispatch(updateAmoutCart({ id, type }));
+  };
   return (
     <Container>
       <Announcement />
@@ -169,7 +180,7 @@ const Cart = () => {
       <Wrapper>
         <Title>Your Bag</Title>
         <Top>
-          <Link to='/'>
+          <Link to="/">
             <TopButton>Continue Shopping</TopButton>
           </Link>
           {/* <TopTexts>
@@ -212,9 +223,19 @@ const Cart = () => {
                 </ProductDetail>
                 <PriceDetail>
                   <ProductAmountContainer>
-                    <Add style={{ cursor: "pointer" }} />
+                    <Delete
+                      onClick={() => handeDelete(product._id)}
+                      style={{ cursor: "pointer" }}
+                    />
+                    <Add
+                      onClick={() => handleClick(product._id, "up")}
+                      style={{ cursor: "pointer" }}
+                    />
                     <ProductAmount>{product.quantity}</ProductAmount>
-                    <Remove style={{ cursor: "pointer" }} />
+                    <Remove
+                      onClick={() => handleClick(product._id, "down")}
+                      style={{ cursor: "pointer" }}
+                    />
                   </ProductAmountContainer>
                   <Price>¥{product.price * product.quantity}</Price>
                 </PriceDetail>
@@ -230,15 +251,16 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>¥540</SummaryItemPrice>
+              <SummaryItemPrice>¥0</SummaryItemPrice>
             </SummaryItem>
-            {/* <SummaryItem>
-              <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>¥-1000</SummaryItemPrice>
-            </SummaryItem> */}
+            <SummaryItem>
+              <SummaryItemText>Discount</SummaryItemText>
+              <SummaryItemPrice>¥0</SummaryItemPrice>
+            </SummaryItem>
+
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>¥{cart.total + 540}</SummaryItemPrice>
+              <SummaryItemPrice>¥{cart.total}</SummaryItemPrice>
             </SummaryItem>
             <Link>
               <StripeCheckout

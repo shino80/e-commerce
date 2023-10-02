@@ -64,6 +64,7 @@ const FilterColor = styled.div`
   background-color: ${(props) => props.color};
   margin: 0 5px;
   cursor: pointer;
+  border: 1.5px solid gray;
 `;
 const FilterSize = styled.select`
   margin-left: 10px;
@@ -166,9 +167,9 @@ const Product = () => {
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove onClick={() => handleQuantity("dec")} />
+              <Remove style={{ cursor: "pointer" }} onClick={() => handleQuantity("dec")} />
               <Amount>{quantity}</Amount>
-              <Add onClick={() => handleQuantity("inc")} />
+              <Add  style={{ cursor: "pointer" }} onClick={() => handleQuantity("inc")} />
             </AmountContainer>
             <Button onClick={handleClick}>ADD TO CART</Button>
           </AddContainer>
