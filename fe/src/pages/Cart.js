@@ -179,7 +179,7 @@ const Cart = () => {
   const handleClick = (id, type) => {
     dispatch(updateAmoutCart({ id, type }));
   };
-  console.log(cart.products);
+
   return (
     <Container>
       <Announcement />
@@ -187,7 +187,7 @@ const Cart = () => {
       <Wrapper>
         <Title>Your Bag</Title>
         <Top>
-          <Link>
+          <Link to='/'>
             <TopButton>Continue Shopping</TopButton>
           </Link>
           {/* <TopTexts>

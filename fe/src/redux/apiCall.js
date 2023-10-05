@@ -1,4 +1,5 @@
-import { publicReq,userReq } from "../requestMethod";
+import { publicReq, userReq } from "../requestMethod";
+import { addProduct } from "./cartRedux";
 import {
   loginFailure,
   loginStart,
@@ -6,17 +7,14 @@ import {
   registerFailure,
   registerStart,
   registerSuccess,
-
 } from "./userRedux";
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
     const res = await publicReq.post("/auth/login", user);
     dispatch(loginSuccess(res.data));
- 
   } catch (error) {
     dispatch(loginFailure());
-  
   }
 };
 

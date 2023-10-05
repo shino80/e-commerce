@@ -49,7 +49,7 @@ const cartSlice = createSlice({
         state.total -= state.products[index].price;
       }
     },
-    checkOutFinish : (state,action) =>{
+    checkOutFinish : (state) =>{
       state.products = []
       state.total = 0 ;
       state.quantity = 0
