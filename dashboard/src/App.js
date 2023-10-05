@@ -14,73 +14,30 @@ import NewUser from "./pages/NewUser/NewUser";
 import PrivateRoute from "./components/PrivateRoute/Privateroute";
 import SideBar from "./components/SidebarLayOut/SideBarLay";
 import SidebarLayout from "./components/SidebarLayOut/SideBarLay";
+import { useSelector } from "react-redux";
 function App() {
+  const admin = useSelector((state) => state.user.currentUser?.isAdmind);
+
   return (
     <div className="App">
       {" "}
       <Topbar />
       <div className="container">
+
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route element={<SidebarLayout />}>
-            <Route
-              path="/"
-              element={
-                <PrivateRoute>
-                  {" "}
-                  <Home />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/users"
-              element={
-                <PrivateRoute>
-                  <UserList />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/users/:userId"
-              element={
-                <PrivateRoute>
-                  <UserPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/new-user"
-              element={
-                <PrivateRoute>
-                  <NewUser />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/products"
-              element={
-                <PrivateRoute>
-                  <Products />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/products/:productId"
-              element={
-                <PrivateRoute>
-                  <Product />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/new-product"
-              element={
-                <PrivateRoute>
-                  <NewProduct />
-                </PrivateRoute>
-              }
-            />
-          </Route>
+        <Route path="/login" element={<Login />} />
+
+          {admin && (
+            <Route element={<SidebarLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/users" element={<UserList />} />
+              <Route path="/users/:userId" element={<UserPage />} />
+              <Route path="/new-user" element={<NewUser />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:productId" element={<Product />} />
+              <Route path="/new-product" element={<NewProduct />} />
+            </Route>
+          )}
         </Routes>
       </div>
     </div>

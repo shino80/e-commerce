@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const productSlice = createSlice({
   name: "product",
   initialState: {
-    currentproduct: null,
+    currentproduct: [],
     isFetching: false,
     error: false,
   },
@@ -15,6 +15,7 @@ const productSlice = createSlice({
     getProductSuccess: (state, action) => {
       state.isFetching = false;
       state.currentproduct = action.payload;
+      console.log(action.payload)
     },
 
     getProductFailure: (state) => {

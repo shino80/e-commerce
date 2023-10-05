@@ -11,9 +11,15 @@ import UpgradeIcon from "@mui/icons-material/Upgrade";
 import app from "../../firebase";
 import { addProducts } from "../../redux/apiCall";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 const NewProduct = () => {
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({});
   const [file, setFile] = useState(null);
+  const [color, setColor] = useState([]);
+  const [size, setSize] = useState([]);
+
   const [cat, setCat] = useState([]);
   const dispatch = useDispatch();
   const handleChange = (e) => {
@@ -24,6 +30,12 @@ const NewProduct = () => {
 
   const handleCat = (e) => {
     setCat(e.target.value.split(","));
+  };
+  const handleColor = (e) => {
+    setColor(e.target.value.split(","));
+  };
+  const handleSize = (e) => {
+    setSize(e.target.value.split(","));
   };
   const handleClick = (e) => {
     e.preventDefault();
@@ -60,11 +72,18 @@ const NewProduct = () => {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          const product = { ...inputs, img: downloadURL, categories: cat };
+          const product = {
+            ...inputs,
+            img: downloadURL,
+            categories: cat,
+            color: color,
+            size: size,
+          };
           addProducts(product, dispatch);
         });
       }
     );
+    navigate("/products");
   };
 
   return (
@@ -94,6 +113,11 @@ const NewProduct = () => {
           />
           <label className="">Categories</label>
           <input type="text" placeholder="jean,skrts" onChange={handleCat} />
+          <label className="">Color</label>
+          <input type="text" placeholder="red,blue,yellow,white" onChange={handleColor} />
+          <label className="">Color</label>
+          <input type="text" placeholder="XS,S,M,L,XL" onChange={handleSize} />
+
           <label>In Stock</label>
           <select name="inStock" id="idStock" onChange={handleChange}>
             <option value="true">Yes</option>
@@ -111,6 +135,7 @@ const NewProduct = () => {
               onChange={(e) => setFile(e.target.files[0])}
             />
           </div>
+
           <button onClick={handleClick} className="newproductButton">
             {" "}
             Update

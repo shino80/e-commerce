@@ -1,4 +1,4 @@
-import { publicReq } from "../requestMethod";
+import { publicReq,userReq } from "../requestMethod";
 import {
   loginFailure,
   loginStart,
@@ -6,15 +6,17 @@ import {
   registerFailure,
   registerStart,
   registerSuccess,
-} from "./userRedux";
 
+} from "./userRedux";
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
     const res = await publicReq.post("/auth/login", user);
     dispatch(loginSuccess(res.data));
+ 
   } catch (error) {
     dispatch(loginFailure());
+  
   }
 };
 
@@ -27,3 +29,4 @@ export const register = async (dispatch, user) => {
     dispatch(registerFailure());
   }
 };
+

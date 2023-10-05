@@ -8,11 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteProducts, getProducts } from "../../redux/apiCall";
 const Products = () => {
   const products = useSelector((state) => state.product.currentproduct);
- 
+
   const dispatch = useDispatch();
   const handleDelete = (id) => {
-    deleteProducts(id,dispatch)
-   };
+    deleteProducts(id, dispatch);
+  };
   useEffect(() => {
     getProducts(dispatch);
   }, [dispatch]);
@@ -60,14 +60,16 @@ const Products = () => {
 
   return (
     <div className="productsList">
-      <DataGrid
-        rows={products}
-        disableRowSelectionOnClick
-        columns={columns}
-        getRowId={(row) => row._id}
-        pageSize={8}
-        checkboxSelection
-      />
+      {products && (
+        <DataGrid
+          rows={products}
+          disableRowSelectionOnClick
+          columns={columns}
+          getRowId={(row) => row._id}
+          pageSize={8}
+          checkboxSelection
+        />
+      )}
     </div>
   );
 };

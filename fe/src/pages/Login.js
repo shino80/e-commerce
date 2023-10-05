@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { moblie } from "../responsive";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/apiCall";
 import { Link, useNavigate } from "react-router-dom";
+import { loginFailure, loginStart } from "../redux/userRedux";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -53,6 +54,22 @@ const Button = styled.button`
     cursor: not-allowed;
   }
 `;
+const ButtonBack = styled.button`
+  width: 20%;
+  border: none;
+  padding: 15px 15px;
+  background-color: darkblue;
+  color: white;
+  margin-top: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  ${moblie({ width: "90px" })};
+  &:disabled {
+    color: green;
+    cursor: not-allowed;
+  }
+`;
 const Register = styled.p`
   font-size: 15px;
   margin: 20px 0;
@@ -70,9 +87,11 @@ const LinkSpan = styled.a`
   text-decoration: none;
 `;
 const Error = styled.span`
-  color: red;
+  color: white;
   margin-top: 10px;
   font-weight: bold;
+  border: 1px solid red;
+  background-color: red;
 `;
 
 export const Login = () => {
@@ -80,36 +99,38 @@ export const Login = () => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  const nagative = useNavigate();
+  const navigate = useNavigate();
   const { isFetching, error } = useSelector((state) => state.user);
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    login(dispatch, { username, password });
-    nagative("/");
+    if (login(dispatch, { username, password })) {
+      navigate("/");
+    } else navigate("/login");
   };
+
   return (
     <Container>
       <Title>SIGN IN</Title>
       <Wrapper>
-        <Form >
+        <Form>
           <Input
-           required
+            required
             placeholder="Email"
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
-           required
+            required
             type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form>
       </Wrapper>
-      <Button  onClick={handleLogin} disabled={isFetching}>
+      <Button onClick={handleLogin} disabled={isFetching}>
         LOGIN
       </Button>
 
-      {/* {error && <Error>SomeThing Went Wrong ! </Error>} */}
+      {error && <Error>Wrong credentials ! </Error>}
       <LinkP>Don't remember your password ?</LinkP>
       <LinkP>
         Create an account ?{" "}
@@ -117,6 +138,21 @@ export const Login = () => {
           <LinkSpan>Register here .</LinkSpan>
         </Link>
       </LinkP>
+      <Link to="/" className="button-back">
+        {" "}
+        <button
+          style={{
+            padding: "10px",
+            marginTop: "15px",
+            backgroundColor: "teal",
+            color: "white",
+            borderRadius: "10px",
+            cursor: "pointer",
+          }}
+        >
+          BACK TO HOME PAGE
+        </button>
+      </Link>
     </Container>
   );
 };

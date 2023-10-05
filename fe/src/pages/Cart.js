@@ -11,7 +11,11 @@ import { useState, useEffect } from "react";
 import { userReq } from "../requestMethod";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { deleteCart, updateAmoutCart } from "../redux/cartRedux";
+import {
+  checkOutFinish,
+  deleteCart,
+  updateAmoutCart,
+} from "../redux/cartRedux";
 
 const KEY = process.env.REACT_APP_;
 const Container = styled.div``;
@@ -84,6 +88,7 @@ const ProductColor = styled.div`
   height: 20px;
   border-radius: 50%;
   background-color: ${(props) => props.color};
+  border: 1px solid gray;
 `;
 const ProductSize = styled.span``;
 const PriceDetail = styled.div`
@@ -160,6 +165,7 @@ const Cart = () => {
           amount: 500,
         });
         navigate("/success", { state: { responseData: res.data } });
+        dispatch(checkOutFinish());
       } catch (error) {
         console.log(error);
       }
@@ -173,6 +179,7 @@ const Cart = () => {
   const handleClick = (id, type) => {
     dispatch(updateAmoutCart({ id, type }));
   };
+  console.log(cart.products);
   return (
     <Container>
       <Announcement />
@@ -180,14 +187,14 @@ const Cart = () => {
       <Wrapper>
         <Title>Your Bag</Title>
         <Top>
-          <Link to="/">
+          <Link>
             <TopButton>Continue Shopping</TopButton>
           </Link>
           {/* <TopTexts>
             <TopText>Shopping Bag(2)</TopText>
             <TopText>Your WishList(0)</TopText>
           </TopTexts>  */}
-          <Link>
+          <Link to="/">
             <StripeCheckout
               name="GorakuShop"
               image="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGphcGFufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60"
@@ -215,7 +222,9 @@ const Cart = () => {
                     <ProductId>
                       <b> ID:</b> {product._id}
                     </ProductId>
+
                     <ProductColor color={product.color} />
+
                     <ProductSize>
                       <b>Size:</b> {product.size}
                     </ProductSize>
@@ -223,10 +232,7 @@ const Cart = () => {
                 </ProductDetail>
                 <PriceDetail>
                   <ProductAmountContainer>
-                    <Delete
-                      onClick={() => handeDelete(product._id)}
-                      style={{ cursor: "pointer" }}
-                    />
+                   
                     <Add
                       onClick={() => handleClick(product._id, "up")}
                       style={{ cursor: "pointer" }}
@@ -235,6 +241,10 @@ const Cart = () => {
                     <Remove
                       onClick={() => handleClick(product._id, "down")}
                       style={{ cursor: "pointer" }}
+                    />
+                     <Delete
+                      onClick={() => handeDelete(product._id)}
+                      style={{ cursor: "pointer",marginLeft:"10px" }}
                     />
                   </ProductAmountContainer>
                   <Price>¥{product.price * product.quantity}</Price>

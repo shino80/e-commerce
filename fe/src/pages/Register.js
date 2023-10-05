@@ -61,6 +61,22 @@ const SpanErr = styled.span`
   color: red;
   margin: 10px 0;
 `;
+const ButtonBack = styled.button`
+  width: 20%;
+  border: none;
+  padding: 15px 15px;
+  background-color: darkblue;
+  color: white;
+  margin-top: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  ${moblie({ width: "90px" })};
+  &:disabled {
+    color: green;
+    cursor: not-allowed;
+  }
+`;
 export const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -84,24 +100,24 @@ export const Register = () => {
       <Wrapper>
         <Form>
           <Input
-          required
+            required
             placeholder="User name"
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
-             required
+            required
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
-             required
-          type="password"
+            required
+            type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <Input
-             required
-          type="password"
+            required
+            type="password"
             placeholder="Confirm Password"
             onChange={(e) => setConfirm(e.target.value)}
           />
@@ -115,6 +131,21 @@ export const Register = () => {
           <LinkSpan>Login here .</LinkSpan>
         </Link>
       </Login>
+      <Link to="/">
+        {" "}
+        <button
+          style={{
+            padding: "10px",
+            marginTop: "15px",
+            backgroundColor: "teal",
+            color: "white",
+            borderRadius: "10px",
+            cursor: "pointer",
+          }}
+        >
+          BACK TO HOME PAGE
+        </button>
+      </Link>
     </Container>
   );
 };
