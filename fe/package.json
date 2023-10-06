@@ -2,7 +2,7 @@
   "name": "fe",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://example.com/admin",
+  "homepage": "https://github.com/shino80/e-commerce/fe",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
