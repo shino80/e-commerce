@@ -8,7 +8,7 @@ import {
   Twitter,
 } from "@mui/icons-material";
 import React from "react";
-import { styled } from "styled-components";
+import styled from 'styled-components'
 import { moblie } from "../responsive";
 const Container = styled.div`
   display: flex;

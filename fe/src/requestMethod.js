@@ -4,7 +4,7 @@ const BASE_URL = "https://goraku-shop.onrender.com/api/";
 // const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
 // const currentUser = user && JSON.parse(user).currentUser;
 // const TOKEN = currentUser?.accessToken;
-const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user)
+const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
   ?.currentUser?.accessToken;
 
 export const publicReq = axios.create({

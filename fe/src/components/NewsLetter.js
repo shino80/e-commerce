@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from "styled-components";
+import styled from 'styled-components'
 import { Send } from "@mui/icons-material";
 import { moblie } from "../responsive";
 const Container = styled.div`

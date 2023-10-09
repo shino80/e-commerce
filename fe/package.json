@@ -1,7 +1,6 @@
 {
   "name": "fe",
   "version": "0.1.0",
-  "homepage": "/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -24,7 +23,7 @@
     "react-stripe-checkout": "^2.6.3",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.2",
-    "styled-components": "^6.0.8",
+    "styled-components": "^5.3.11",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -50,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^2.1.4"
   }
 }

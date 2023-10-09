@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import Announcement from "../components/Announcement";
-import { styled } from "styled-components";
+import styled from 'styled-components'
 import Footer from "../components/Footer";
 import { Add, Remove, Delete } from "@mui/icons-material";
 import { moblie } from "../responsive";

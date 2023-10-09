@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 import { moblie } from "../responsive";
 import {Link} from 'react-router-dom'
 const Container = styled.div`

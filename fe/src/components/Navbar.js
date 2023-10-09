@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from 'styled-components'
 import { ShoppingCart } from "@mui/icons-material";
 import { AiOutlineSearch } from "react-icons/ai";
 import Badge from "@mui/material/Badge";

@@ -4,7 +4,7 @@ import {
 
   ShoppingCartOutlined
 } from "@mui/icons-material";
-import { styled } from "styled-components";
+import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import {useLocation} from 'react-router-dom'
 const Info = styled.div`

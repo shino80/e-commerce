@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from 'styled-components'
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import NewsLetter from "../components/NewsLetter";
