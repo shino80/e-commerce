@@ -7,6 +7,7 @@ import Cart from "./pages/Cart";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Success from "./pages/Success";
 import { useSelector } from "react-redux";
+
 function App() {
   const user = useSelector((state) => state.user.currentUser);
   const nagative = useNavigate();
