@@ -32,5 +32,5 @@ app.use("/api/orders", orderRoute);
 app.use("/api/carts", cartRoute);
 app.use("/api/checkout", stripeRoute);
 app.listen(process.env.PORT || 8000, () => {
-  console.log("BE Is Running !");
+  console.log("Be Is Running !");
 });
