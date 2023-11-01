@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
-  const nagative = useNavigate();
+
   return (
     <div className="App">
       <Routes>

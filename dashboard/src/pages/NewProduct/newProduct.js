@@ -130,6 +130,7 @@ const NewProduct = () => {
               <UpgradeIcon />
             </label>
             <input
+            multiple
               type="file"
               id="file"
               onChange={(e) => setFile(e.target.files[0])}

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 import { moblie } from "../responsive";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,6 +47,7 @@ const Button = styled.button`
   color: white;
   margin-top: 30px;
   border-radius: 5px;
+
   cursor: pointer;
   ${moblie({ width: "90px" })};
   &:disabled {
@@ -100,12 +101,15 @@ export const Login = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isFetching, error } = useSelector((state) => state.user);
-  const handleLogin = async (e) => {
+  const { isFetching, error, currentUser } = useSelector((state) => state.user);
+  useEffect(() => {
+   if(currentUser){
+   navigate("/")
+   }
+  },[navigate,currentUser]);
+  const handleLogin =  (e) => {
     e.preventDefault();
-    if (login(dispatch, { username, password })) {
-      navigate("/");
-    } else navigate("/login");
+    login(dispatch, { username, password });
   };
 
   return (

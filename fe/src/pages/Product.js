@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import NewsLetter from "../components/NewsLetter";
@@ -25,6 +25,13 @@ const Image = styled.img`
   height: 70vh;
   object-fit: cover;
   ${moblie({ height: "40vh" })};
+`;
+const ListImage = styled.img`
+  width: 10%;
+  object-fit: cover;
+  border: 1px solid black;
+
+  cursor: pointer;
 `;
 const InfoContainer = styled.div`
   flex: 1;

@@ -29,7 +29,7 @@ const Products = () => {
             {params.row.title}
           </div>
         );
-      },
+      }
     },
     { field: "inStock", headerName: "Stock", width: 200 },
 
