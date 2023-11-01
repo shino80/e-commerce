@@ -105,7 +105,10 @@ export const Login = () => {
   useEffect(() => {
    if(currentUser){
    navigate("/")
+   }else{
+    dispatch(loginStart())
    }
+
   },[navigate,currentUser]);
   const handleLogin =  (e) => {
     e.preventDefault();
@@ -130,7 +133,7 @@ export const Login = () => {
           />
         </Form>
       </Wrapper>
-      <Button onClick={handleLogin} disabled={isFetching}>
+      <Button onClick={handleLogin} >
         LOGIN
       </Button>
 
