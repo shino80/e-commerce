@@ -18,8 +18,8 @@ const Products = ({ cat, filter, sort }) => {
       try {
         const res = await axios.get(
           cat
-            ? `https://tame-ruby-narwhal-robe.cyclic.app/api/products?category=${cat}`
-            : "https://tame-ruby-narwhal-robe.cyclic.app/api/products"
+            ? `https://goraku-shop.onrender.com/api/products?category=${cat}`
+            : "https://goraku-shop.onrender.com/api/products"
         );
         setProducts(res.data);
       } catch (error) {
